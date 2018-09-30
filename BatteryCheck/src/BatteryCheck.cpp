@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+
+
 void currentTime(std::ostream& str = std::cout, int i = 11);
 
 void showBatteryStatus(double i, std::ostream& str = std::cout);
@@ -36,6 +38,10 @@ int main()
 		case 2:
 			while (true)
 			{
+				struct stat info;
+				if (stat("src/BatteryReports/", &info) != 0)
+					CreateDirectory("src/BatteryReports/", NULL);
+
 				std::cout << "What should the file be named: ";
 				std::string B;
 				std::cin >> B;
@@ -62,7 +68,6 @@ int main()
 					break;
 				}
 				std::cout << "There was an error! Try once more" << std::endl;
-
 			}
 			break;
 
